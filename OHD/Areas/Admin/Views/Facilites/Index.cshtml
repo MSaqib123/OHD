@@ -1,0 +1,83 @@
+﻿@*@model IEnumerable<OHD.Models.TblFacilities>*@
+@model OHD.Data.ViewModels.VMFacility;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+        <br />
+        <div class="d-flex justify-content-between align-content-center">
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Compainse /</span> Facilities</h4>
+            <p>
+                <a asp-action="Create" class="btn btn-primary">Create New</a>
+            </p>
+        </div>
+
+        <!-- Basic Bootstrap Table -->
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Images</th>
+                            <th>
+                                Id
+                            </th>
+                            <th>
+                                Facilities
+                            </th>
+                            <th>Images</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(Model.tblFacility_List.ToList().Count > 0)
+                        {
+                            @foreach (var item in Model.tblFacility_List)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/@item.FaciImage" style="width:40px;height:50px" alt="" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FaciId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FaciFacilities)
+                                    </td>
+                                    <td>
+                                        @foreach (var item1 in Model.tblFacilityImages_List.Where(x => x.FaciId == item.FaciId).ToList())
+                                        {
+                                            <img src="~/@item1.ImageUrl" style="width:40px;height:50px" alt="" />
+                                        }
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.FaciId">Edit</a>
+                                        <a class="btn btn-danger" asp-action="delete" asp-route-id="@item.FaciId">Delete</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <b>No Record </b>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

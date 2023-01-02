@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityRole>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+        <br />
+        <div class="d-flex justify-content-between align-content-center">
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Users Settings /</span> Users</h4>
+            <p>
+                <a asp-action="Create" class="btn btn-primary">Create New</a>
+            </p>
+        </div>
+
+        <!-- Basic Bootstrap Table -->
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Role Id</th>
+                            <th>Role Names</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (Model != null)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger confirmDeletion">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3" class="text-center">No Roles</td>
+                                </tr>
+                            }
+                        }
+                        
+                    </tbody>
+                </table>
+
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

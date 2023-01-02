@@ -1,0 +1,56 @@
+﻿@model LoginModel
+
+<link href="~/Login/Account.css" rel="stylesheet" />
+<style>
+    .account_btn {
+        width: 100%;
+        color:white;
+        padding: 10px 15px;
+        border: 1px solid #e5e5e5;
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        outline: none;
+    }
+    .account_btn:hover {
+        background:white;
+        color:black;
+    }
+
+</style>
+
+
+<div class="wrapper">
+    <form class="form-right" asp-action="SignIn">
+        <h2 class="text-uppercase">Registration form</h2>
+
+        <div class="mb-3">
+            <label>Your Email</label>
+            <input asp-for="Email" type="email" class="input-field" required>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 mb-3">
+                <label>Password</label>
+                <input asp-for="Password" type="password" class="input-field">
+            </div>
+        </div>
+
+        <div class="form-field">
+            <input type="submit" value="Register" class="register">
+        </div>
+    </form>
+
+    <div class="form-left border-left-0" style="border-bottom-left-radius: 0; border-top-left-radius:0">
+        <h2 class="text-uppercase">information</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et molestie ac feugiat sed. Diam volutpat commodo.
+        </p>
+        <p class="text">
+            <span>Sub Head:</span>
+            Vitae auctor eu augudsf ut. Malesuada nunc vel risus commodo viverra. Praesent elementum facilisis leo vel.
+        </p>
+
+        <div class="form-field">
+            <a asp-area="Account" asp-action="SignUp" asp-controller="Accounts" class="account_btn w-50">Create Account</a>
+        </div>
+    </div>
+</div>

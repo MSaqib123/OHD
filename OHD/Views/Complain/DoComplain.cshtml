@@ -1,0 +1,87 @@
+﻿@model OHD.Data.ViewModels.VMcomplainfacility
+
+<!--============= Hero Section Starts Here =============-->
+<div class="hero-section bg_img style-two opacity-25" data-background="../@Model.tbl_facility.FaciImage" style="box-shadow:revert">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-md-10">
+                <div class="cate-header cl-white">
+                    <h1 class="cate-title">Your Complaine For FacilityName</h1>
+                    <p>
+                        Submit Your Complain Here, We will fiexd Your complate for shure
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============= Hero Section Ends Here =============-->
+
+<!--============= Contact Section Starts Here =============-->
+<div class="contact-form-section padding-bottom pos-rel">
+    <div class="container">
+        <div class="contact-wrapper oh mt--160">
+            <div class="contact-header">
+                <h5 class="title text-center">Give Complains Detail</h5>
+            </div>
+            <form class="contact-form row" id="contact_form_submit" asp-for="create" method="post">
+
+                <input asp-for="tbl_facility.FaciId" hidden/>
+
+                <div class="form-group col-md-6">
+                    <label for="name">Name of Complain</label>
+                    <input type="text" asp-for="tbl_Complain.CompName">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="phone">Contact Number</label>
+                    <input type="text" asp-for="tbl_Complain.ContactNumber">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email Address</label>
+                    <input type="text" asp-for="tbl_Complain.Email">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Complain Date</label>
+                    <input value="@(DateTime.Now)" disabled asp-for="tbl_Complain.CompRequestdate">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="email">Your Residance</label>
+                    <input value="@(DateTime.Now)" disabled asp-for="tbl_Complain.Rasidance">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="message">Your Complain</label>
+                    <textarea asp-for="tbl_Complain.BriefComplain"></textarea>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <div class="form-submit">
+                        <button type="submit" class="custom-button">Submit Your Request</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--============= Contact Section Ends Here =============-->
+
+
+<!--============= Have Questions Section Starts Here =============-->
+<div class="have-questions-section">
+    <div class="container">
+        <div class="have-question-wrapper shadow">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="have-question-content">
+                        <h2 class="title">Still Have Questions?</h2>
+                        <p>Our customer care team is here for you!</p>
+                        <a href="#0" class="custom-button">Contact Us</a>
+                    </div>
+                </div>
+                <div class="right-thumb d-none d-lg-block">
+                    <img src="../Template1/assets/images/faq/have-questions.png" alt="faq">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--============= Have Questions Section Ends Here =============-->
