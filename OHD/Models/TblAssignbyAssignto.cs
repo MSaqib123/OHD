@@ -25,8 +25,6 @@ namespace OHD.Models
         [ForeignKey(nameof(AssignbyId))]
         [InverseProperty(nameof(TblAssignees.TblAssignbyAssignto))]
         public virtual TblAssignees Assignby { get; set; }
-        [ForeignKey(nameof(AssigntoId))]
-        [InverseProperty(nameof(IdentityRegistor.TblAssignbyAssignto))]
-        public virtual IdentityRegistor Assignto { get; set; }
+        
     }
 }

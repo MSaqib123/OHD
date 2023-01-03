@@ -1,0 +1,60 @@
+﻿@model IEnumerable<tblStatus>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+        <br />
+        <div class="d-flex justify-content-between align-content-center">
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Compainse /</span> Facilities</h4>
+            <p>
+                <a asp-action="Create" class="btn btn-primary">Create New</a>
+            </p>
+        </div>
+
+        <!-- Basic Bootstrap Table -->
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>St_Id</th>
+                            <th>
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StName)
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.StId">Edit</a>
+                                    <a class="btn btn-danger" asp-action="delete" asp-route-id="@item.StId">Delete</a>
+                                </td>
+
+                            </tr>
+                        }
+                        
+                    </tbody>
+                </table>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

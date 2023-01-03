@@ -1,0 +1,103 @@
+﻿@model IEnumerable<OHD.Models.TblComplaints>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+        <br />
+        <div>
+            <h4 class="fw-bold py-3 mb-4">
+                <span class="text-muted fw-light">Compainse /</span>
+                @if (ViewBag.vg == "UnCompleted Complains")
+                {
+                    <b>@ViewBag.vg</b>
+                }
+                else if(ViewBag.vg == "Completed Complains")
+                {
+                    <b>@ViewBag.vg</b>
+                }
+                else
+                {
+                    <b>All Complains</b>
+                }
+                
+
+            </h4>
+        </div>
+
+        <!-- Basic Bootstrap Table -->
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                ComplainName
+                            </th>
+                            <th>
+                                Create_Date
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                User
+                            </th>
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.CompName
+                                    </td>
+                                    <td>
+                                        @item.CompRequestdate
+                                    </td>
+                                    <td>
+                                        @if (item.CompStatusId.Value == 1)
+                                        {
+                                            <b class="badge-danger badge-pill">Panding</b>
+                                        }
+                                        else if (item.CompStatusId.Value == 2)
+                                        {
+                                            <b class="badge-info badge-pill">Working</b>
+                                        }
+                                        else if (item.CompStatusId.Value == 3)
+                                        {
+                                            <b  class="badge-success badge-pill">Completed</b>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.User != null)
+                                        {
+                                            <b>@(item.User.FirstName +' '+ item.User.LastNme)</b>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.CompId">Edit</a>
+                                        <a class="btn btn-danger" asp-action="delete" asp-route-id="@item.CompId">Delete</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        
+                    </tbody>
+                </table>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

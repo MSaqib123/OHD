@@ -5,7 +5,7 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <!--============= Hero Section Starts Here =============-->
-<div class="hero-section bg_img style-two" data-background="assets/images/banner/page-header.jpg">
+<div class="hero-section bg_img style-two" data-background="../Template1/assets/images/banner/page-header.jpg">
     <div class="container">
         <div class="row">
             <div class="col-xl-8 col-md-10">
@@ -25,7 +25,8 @@
 
 
     <!--============= Team Section Starts Here =============-->
-    <section class="team-section padding-bottom">
+<br /><br />
+    <section class="team-section padding-bottom mt-3">
         <div class="container">
             @foreach (var item in Model)
             {
@@ -46,19 +47,19 @@
                     <div class="col-sm-10 col-md-6 col-lg-6">
                         <div class="team-item">
                             <div class="section-content">
-                                <div class="section-bit my-2" style="color:gainsboro">About our services</div>
-                                <h4 class="py-2" style="color:white">What we offer is not just services</h4>
-                                <p class="section-desc" style="font-size:16px;color:gainsboro">
+                                <div class="section-bit my-2">About our services</div>
+                                <h4 class="py-2">What we offer is not just services</h4>
+                                <p class="section-desc">
                                     @item.FaciBrifedescription
                                     @*Lorem ipsum dolor sit amet consectetur, adipisicing
-                                    elit. Itaque quaerat eligendi, reiciendis similique
-                                    impedit vero! Sed aperiam iusto eveniet ratione qui
-                                    quos pariatur veniam nesciunt, soluta fugit debitis
-                                    atque quibusdam mollitia ad, id itaque esse dolores!
-                                    Ex quos similique alias fugiat excepturi laborum hic
-                                    doloribus est culpa dolorum, eum illum.*@
+                                elit. Itaque quaerat eligendi, reiciendis similique
+                                impedit vero! Sed aperiam iusto eveniet ratione qui
+                                quos pariatur veniam nesciunt, soluta fugit debitis
+                                atque quibusdam mollitia ad, id itaque esse dolores!
+                                Ex quos similique alias fugiat excepturi laborum hic
+                                doloribus est culpa dolorum, eum illum.*@
                                 </p>
-                                <div class="section-services" style="color:gainsboro">
+                                <div class="section-services">
                                     <div class="row">
                                         <div class="col-sm-6 section-services_col">
                                             <i class="fa fa-laptop"></i>
@@ -79,12 +80,13 @@
                                     </div>
                                 </div>
                                 <br />
-                                <a asp-action="doComplain" asp-controller="Complain" asp-cont class="btn bg-white btn-lg">Click for Complain / Help</a>
+                                <a asp-action="doComplain" asp-controller="Complain" asp-route-id="@item.FaciId" asp-cont class="btn bg-white btn-lg">Click for Complain / Help</a>
                             </div>
                         </div>
                     </div>
 
                 </div>
+                <br /><br><br /><br>
             }
         </div>
     </section>

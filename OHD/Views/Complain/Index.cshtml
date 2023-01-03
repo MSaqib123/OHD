@@ -1,0 +1,99 @@
+﻿@model IEnumerable<OHD.Models.TblComplaints>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+    <!--============= Hero Section Starts Here =============-->
+    <div class="hero-section bg_img style-two" data-background="../Template1/assets/images/banner/page-header.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-md-10">
+                    <div class="cate-header cl-white">
+                        <h1 class="cate-title">Your Complains</h1>
+                        <p>
+                            Potal : Your All Records  Starting to End are  here , All of Your Complains Here
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--============= Hero Section Ends Here =============-->
+
+
+    <!--============= Team Section Starts Here =============-->
+    <br />
+    <br />
+    <section class="team-section padding-bottom mt-3">
+        <div class="container">
+            <div class="row justify-content-center mb-30-none mb-5 mt-3">
+
+                @if(Model.ToList().Count > 0){
+                    <table class="table table-striped table-bordered shadow-sm">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>
+                                ComplainName
+                            </th>
+                            <th>
+                                Contact
+                            </th>
+                            <th>
+                                Create_Date
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.CompName
+                                </td>
+                                <td>
+                                    @item.ContactNumber
+                                </td>
+                                <td>
+                                    @item.CompRequestdate
+                                </td>
+                                <td>
+                                    @if (item.CompStatusId.Value == 1)
+                                    {
+                                        <b class="badge-danger badge-pill">Panding</b>
+                                    }
+                                    else if (item.CompStatusId.Value == 2)
+                                    {
+                                        <b class="badge-info badge-pill">Working</b>
+                                    }
+                                    else if (item.CompStatusId.Value == 3)
+                                    {
+                                        <b class="badge-success badge-pill">Completed</b>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">@item.BriefComplain</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+                }
+                else{
+                    <h2 class="mt-4 mb-0">Your Complains Are Empty......</h2>
+                }
+            </div>
+        </div>
+    </section>
+    <br /><br /><br />
+
+
+
+

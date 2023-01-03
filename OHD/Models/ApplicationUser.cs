@@ -25,7 +25,7 @@ namespace OHD.Models
         public IFormFile iImage { get; set; }
 
 
-        [InverseProperty("CompIdentity")]
+        [InverseProperty("User")]
         public virtual ICollection<TblComplaints> TblComplaints { get; set; }
     }
 }

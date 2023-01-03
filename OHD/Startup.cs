@@ -33,7 +33,14 @@ namespace OHD
 
             //__________________ Authentication ___________________
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ODHContext>();
-
+            var con = "Data Source = SAQIB\\SAQIB;Initial catalog=ODH;Trusted_connection=yes;";
+            services.AddDbContext<ODHContext>(e=>{
+                e.UseSqlServer(con);
+            });
+            services.ConfigureApplicationCookie(option =>
+            {
+                option.LoginPath = "/Account/Accounts/SignIn/";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

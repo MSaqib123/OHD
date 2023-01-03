@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OHD.Data;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace OHD.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class UsersController : Controller
     {
         

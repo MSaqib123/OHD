@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Linq;
 namespace OHD.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class FacilitesController : Controller
     {
         private readonly ODHContext context;

@@ -1,0 +1,46 @@
+﻿@model tblStatus
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Complains /</span> Facilites</h4>
+        <div class="row">
+            <div class="col-xl">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form asp-action="Edit" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="StId" class="form-control" hidden />
+                            
+
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-fullname">Facility</label>
+                                <input asp-for="StName" type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                                <span asp-validation-for="StName" class="text-danger"></span>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

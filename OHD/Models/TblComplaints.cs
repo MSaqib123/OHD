@@ -38,16 +38,24 @@ namespace OHD.Models
 
 
         [Column("comp_requestdate", TypeName = "date")]
-        public DateTime? CompRequestdate { get; set; }
+        public DateTime? CompRequestdate { get; set; } = DateTime.Now;
+
+
         [Column("comp_status")]
-        public int? CompStatus { get; set; }
+
+        public int? CompStatusId { get; set; }
+        [ForeignKey(nameof(CompStatusId))]
+        [InverseProperty(nameof(tblStatus.TblComplaints))]
+        public virtual tblStatus Status { get; set; }
 
 
         //____________ Y runtime par ayy gee _____________
         [Column("comp_facilitySelected_Id")]
         public int? CompFacilitySelectedId { get; set; }
+
         [Column("comp_identity_id")]
-        public int? CompIdentityId { get; set; }
+        public string? userId { get; set; }
+
         [Column("comp_assi_id")]
         public int? CompAssiId { get; set; }
 
@@ -57,8 +65,9 @@ namespace OHD.Models
         [ForeignKey(nameof(CompFacilitySelectedId))]
         [InverseProperty(nameof(TblFacilities.TblComplaints))]
         public virtual TblFacilities CompFacilitySelected { get; set; }
-        [ForeignKey(nameof(CompIdentityId))]
-        [InverseProperty(nameof(IdentityRegistor.TblComplaints))]
-        public virtual IdentityRegistor CompIdentity { get; set; }
+
+        [ForeignKey(nameof(userId))]
+        [InverseProperty(nameof(ApplicationUser.TblComplaints))]
+        public virtual ApplicationUser User{ get; set; }
     }
 }

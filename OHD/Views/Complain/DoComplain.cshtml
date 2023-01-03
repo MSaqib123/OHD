@@ -1,12 +1,21 @@
 ﻿@model OHD.Data.ViewModels.VMcomplainfacility
 
+<style>
+    #img {
+
+        /* _________background_________ */
+        background: linear-gradient(#000000de,#48474785) , url(../../@Model.tbl_facility.FaciImage)!important;
+        background-position: center;
+        background-size:cover !important
+    }
+</style>
 <!--============= Hero Section Starts Here =============-->
-<div class="hero-section bg_img style-two opacity-25" data-background="../@Model.tbl_facility.FaciImage" style="box-shadow:revert">
+<div class="hero-section bg_img style-two opacity-25" id="img" style="background: linear-gradient(#48474785, #000000de)" >
     <div class="container">
         <div class="row">
             <div class="col-xl-8 col-md-10">
                 <div class="cate-header cl-white">
-                    <h1 class="cate-title">Your Complaine For FacilityName</h1>
+                    <h1 class="cate-title">Your Complaine For @Model.tbl_facility.FaciFacilities</h1>
                     <p>
                         Submit Your Complain Here, We will fiexd Your complate for shure
                     </p>
@@ -24,7 +33,7 @@
             <div class="contact-header">
                 <h5 class="title text-center">Give Complains Detail</h5>
             </div>
-            <form class="contact-form row" id="contact_form_submit" asp-for="create" method="post">
+            <form class="contact-form row" id="contact_form_submit" asp-action="DoComplain" method="post">
 
                 <input asp-for="tbl_facility.FaciId" hidden/>
 
@@ -42,11 +51,11 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="email">Complain Date</label>
-                    <input value="@(DateTime.Now)" disabled asp-for="tbl_Complain.CompRequestdate">
+                    <input disabled asp-for="tbl_Complain.CompRequestdate">
                 </div>
                 <div class="form-group col-md-12">
                     <label for="email">Your Residance</label>
-                    <input value="@(DateTime.Now)" disabled asp-for="tbl_Complain.Rasidance">
+                    <input asp-for="tbl_Complain.Rasidance">
                 </div>
                 <div class="form-group col-md-12">
                     <label for="message">Your Complain</label>
@@ -72,16 +81,41 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="have-question-content">
-                        <h2 class="title">Still Have Questions?</h2>
-                        <p>Our customer care team is here for you!</p>
-                        <a href="#0" class="custom-button">Contact Us</a>
+                        <h2 class="title">More Images</h2>
+                        <p>I Love Pakistan !</p>
                     </div>
                 </div>
                 <div class="right-thumb d-none d-lg-block">
-                    <img src="../Template1/assets/images/faq/have-questions.png" alt="faq">
+                    <img src="~/Template1/assets/images/faq/have-questions.png" alt="faq">
                 </div>
+            </div>
+            <div>
+                <!--============= Team Section Starts Here =============-->
+                <br />
+                <section class="team-section padding-top">
+
+                    <div class="row justify-content-center mb-30-none">
+                        @foreach (var item in Model.tblFacilityImages_List.Where(x=>x.FaciId == Model.tbl_facility.FaciId).ToList())
+                        {
+                            <div class="col-sm-10 col-md-6 col-lg-4">
+                                <div class="team-item">
+                                    <div class="team-thumb">
+                                        <a href="~/@item.ImageUrl" target="_blank"><img src="~/@item.ImageUrl" alt="team" style="height:200px"></a>
+                                    </div>
+                                    <div class="team-content">
+                                        <span>Support Pakistan</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </section>
+                <!--============= Team Section Ends Here =============-->
+
             </div>
         </div>
     </div>
 </div>
 <!--============= Have Questions Section Ends Here =============-->
+<br /><br />

@@ -32,6 +32,8 @@
     <a href="#0" class="scrollToTop"><i class="fas fa-angle-up"></i></a>
     <div class="overlay"></div>
     <!--============= ScrollToTop Section Ends Here =============-->
+
+
     <!--============= Header Section Starts Here =============-->
     <header class="header-section">
         <div class="container">
@@ -43,9 +45,12 @@
                         </a>
                     </div>
                     @*__________ show after user login _________*@
-                    <div class="support">
-                        <a asp-area="" asp-controller="" asp-action="Index">Complains</a>
-                    </div>
+                    @if (SignInManager.IsSignedIn(User)) //(false)
+                    { 
+                        <div class="support">
+                            <a asp-area="" asp-controller="Complain" asp-action="Index">Complains</a>
+                        </div>
+                    }
                 </div>
 
                 <ul class="menu">

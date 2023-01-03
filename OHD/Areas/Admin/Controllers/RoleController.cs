@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace FirstProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class RoleController : Controller
     {
         private readonly IWebHostEnvironment iweb;

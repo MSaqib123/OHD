@@ -1,0 +1,72 @@
+﻿@model TblComplaints
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Complains /</span> Update_Status</h4>
+        <div class="row">
+            <div class="col-xl">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form asp-action="Edit" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="CompId" class="form-control" hidden />
+                            <input asp-for="userId" class="form-control" hidden />
+
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-fullname">Complain Name</label>
+                                <input asp-for="CompName" type="text" class="form-control" placeholder="John Doe" disabled/>
+                                <span asp-validation-for="CompName" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-message">Date of Create</label>
+                                <input asp-for="CompRequestdate" type="text" class="form-control" placeholder="" disabled/>
+                                <span asp-validation-for="CompRequestdate" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-message">Contact of Complainer</label>
+                                <input asp-for="ContactNumber" type="text" class="form-control"  placeholder="" disabled/>
+                                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="basic-default-message">Contact of Complainer</label>
+                                <textarea asp-for="BriefComplain" class="form-control" placeholder="Hi, Give Brife Description?" disabled></textarea>
+                                <span asp-validation-for="BriefComplain" class="text-danger"></span>
+                            </div>
+
+                            <div>
+                                <label class="form-label" for="basic-default-message">Update Status</label>
+                                <select asp-for="CompStatusId" asp-items="@ViewBag.Status"  class="form-control">
+                                </select>
+                                <span asp-validation-for="CompStatusId" class="text-danger"></span>
+                            </div>
+                            
+
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

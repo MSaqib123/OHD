@@ -21,7 +21,6 @@ namespace OHD.Data
         {
         }
 
-        public virtual DbSet<IdentityRegistor> IdentityRegistor { get; set; }
         public virtual DbSet<TblAssignbyAssignto> TblAssignbyAssignto { get; set; }
         public virtual DbSet<TblAssignees> TblAssignees { get; set; }
         public virtual DbSet<TblComplaints> TblComplaints { get; set; }
@@ -30,6 +29,7 @@ namespace OHD.Data
         public virtual DbSet<TblMaintaines> TblMaintaines { get; set; }
         public virtual DbSet<TblStudentCouncil> TblStudentCouncil { get; set; }
         public virtual DbSet<TblFacilityImages> TblFacilityImages { get; set; }
+        public virtual DbSet<tblStatus> tblStatus{ get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -46,13 +46,7 @@ namespace OHD.Data
             base.OnModelCreating(modelBuilder);
 
 
-            modelBuilder.Entity<IdentityRegistor>(entity =>
-            {
-                entity.HasKey(e => e.IdentityId)
-                    .HasName("PK__identity__D51AF5F4DCA8EE34");
-
-                entity.Property(e => e.IdentityName).IsUnicode(false);
-            });
+            
 
             modelBuilder.Entity<TblAssignbyAssignto>(entity =>
             {
@@ -68,10 +62,6 @@ namespace OHD.Data
                     .HasForeignKey(d => d.AssignbyId)
                     .HasConstraintName("FK__tbl_assig__assig__3C69FB99");
 
-                entity.HasOne(d => d.Assignto)
-                    .WithMany(p => p.TblAssignbyAssignto)
-                    .HasForeignKey(d => d.AssigntoId)
-                    .HasConstraintName("FK__tbl_assig__assig__3D5E1FD2");
             });
 
             modelBuilder.Entity<TblAssignees>(entity =>
@@ -91,7 +81,7 @@ namespace OHD.Data
 
                 entity.Property(e => e.CompRequestdate).HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.CompStatus).HasDefaultValueSql("((1))");
+                entity.Property(e => e.CompStatusId).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.CompAssi)
                     .WithMany(p => p.TblComplaints)
@@ -103,10 +93,6 @@ namespace OHD.Data
                     .HasForeignKey(d => d.CompFacilitySelectedId)
                     .HasConstraintName("FK__tbl_compl__comp___4316F928");
 
-                entity.HasOne(d => d.CompIdentity)
-                    .WithMany(p => p.TblComplaints)
-                    .HasForeignKey(d => d.CompIdentityId)
-                    .HasConstraintName("FK__tbl_compl__comp___440B1D61");
             });
 
             modelBuilder.Entity<TblFacilities>(entity =>

@@ -10,8 +10,8 @@ using OHD.Data;
 namespace OHD.Migrations
 {
     [DbContext(typeof(ODHContext))]
-    [Migration("20221216193224_add-image-columnfor_facilites")]
-    partial class addimagecolumnfor_facilites
+    [Migration("20230102191913_mg1")]
+    partial class mg1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -160,9 +160,18 @@ namespace OHD.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Age")
+                        .HasColumnType("int");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
@@ -170,6 +179,12 @@ namespace OHD.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastNme")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -194,6 +209,9 @@ namespace OHD.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ProfileImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -215,26 +233,6 @@ namespace OHD.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("OHD.Models.IdentityRegistor", b =>
-                {
-                    b.Property<int>("IdentityId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("identity_id")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("IdentityName")
-                        .HasColumnName("identity_name")
-                        .HasColumnType("varchar(25)")
-                        .HasMaxLength(25)
-                        .IsUnicode(false);
-
-                    b.HasKey("IdentityId")
-                        .HasName("PK__identity__D51AF5F4DCA8EE34");
-
-                    b.ToTable("identity_registor");
                 });
 
             modelBuilder.Entity("OHD.Models.TblAssignbyAssignto", b =>
@@ -261,8 +259,6 @@ namespace OHD.Migrations
                         .HasName("PK__tbl_assi__49C454DE88E84FCB");
 
                     b.HasIndex("AssignbyId");
-
-                    b.HasIndex("AssigntoId");
 
                     b.ToTable("tbl_assignby_assignto");
                 });
@@ -295,16 +291,17 @@ namespace OHD.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("BriefComplain")
+                        .HasColumnName("complain")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
                     b.Property<int?>("CompAssiId")
                         .HasColumnName("comp_assi_id")
                         .HasColumnType("int");
 
                     b.Property<int?>("CompFacilitySelectedId")
                         .HasColumnName("comp_facilitySelected_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CompIdentityId")
-                        .HasColumnName("comp_identity_id")
                         .HasColumnType("int");
 
                     b.Property<string>("CompName")
@@ -325,6 +322,25 @@ namespace OHD.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("((1))");
 
+                    b.Property<string>("ContactNumber")
+                        .HasColumnName("con_Number")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Email")
+                        .HasColumnName("Email_address")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Rasidance")
+                        .HasColumnName("Rasidance")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("userId")
+                        .HasColumnName("comp_identity_id")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("CompId")
                         .HasName("PK__tbl_comp__531653DD0E7905B6");
 
@@ -332,7 +348,7 @@ namespace OHD.Migrations
 
                     b.HasIndex("CompFacilitySelectedId");
 
-                    b.HasIndex("CompIdentityId");
+                    b.HasIndex("userId");
 
                     b.ToTable("tbl_complaints");
                 });
@@ -530,11 +546,6 @@ namespace OHD.Migrations
                         .WithMany("TblAssignbyAssignto")
                         .HasForeignKey("AssignbyId")
                         .HasConstraintName("FK__tbl_assig__assig__3C69FB99");
-
-                    b.HasOne("OHD.Models.IdentityRegistor", "Assignto")
-                        .WithMany("TblAssignbyAssignto")
-                        .HasForeignKey("AssigntoId")
-                        .HasConstraintName("FK__tbl_assig__assig__3D5E1FD2");
                 });
 
             modelBuilder.Entity("OHD.Models.TblComplaints", b =>
@@ -549,15 +560,14 @@ namespace OHD.Migrations
                         .HasForeignKey("CompFacilitySelectedId")
                         .HasConstraintName("FK__tbl_compl__comp___4316F928");
 
-                    b.HasOne("OHD.Models.IdentityRegistor", "CompIdentity")
+                    b.HasOne("OHD.Models.ApplicationUser", "User")
                         .WithMany("TblComplaints")
-                        .HasForeignKey("CompIdentityId")
-                        .HasConstraintName("FK__tbl_compl__comp___440B1D61");
+                        .HasForeignKey("userId");
                 });
 
             modelBuilder.Entity("OHD.Models.TblFacilityImages", b =>
                 {
-                    b.HasOne("OHD.Models.TblFacilities", "facilityImages")
+                    b.HasOne("OHD.Models.TblFacilities", "tblFacility")
                         .WithMany("TblFacilityImages")
                         .HasForeignKey("FaciId");
                 });
